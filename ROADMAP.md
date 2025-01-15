@@ -28,8 +28,6 @@
     );
     ```
 
----
-
 ## 2. Risk management
 
 * **Risk Scoring:**
@@ -45,8 +43,6 @@
     );
     ```
 
----
-
 ## 3. Multi-Currency Support
 
 * While `swift_xml_messages` table has a `currency` column, extend multi-currency support across other financial tables, such as `transactions` and `fedwire_messages`.
@@ -60,9 +56,6 @@
       effective_date DATE NOT NULL
   );
   ```
-
-
----
 
 ## 4. Enhanced Document Management
 
@@ -80,8 +73,6 @@
         checksum VARCHAR(64);
     ```
 
----
-
 ## **5. More Detailed Transaction Tracking**
 
 * **Transaction States:**
@@ -94,8 +85,6 @@
     ```sql
     ALTER TABLE transactions ADD fee DECIMAL(15, 2) DEFAULT 0.00;
     ```
-
----
 
 ## 6. Parties and Institutions Enhancements
 
@@ -116,8 +105,6 @@
     ALTER TABLE institutions ADD institution_type VARCHAR(50);
     ```
 
----
-
 ## 7. Performance Enhancements
 
 * **Indexing:**
@@ -126,10 +113,6 @@
     ```sql
     CREATE INDEX idx_transactions_letter_date ON transactions (letter_id, transaction_date);
     ```
-
----
-
-
 
 ## 8. Workflow Tracking
 
