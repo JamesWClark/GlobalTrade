@@ -23,7 +23,7 @@
   * `letter_type_id`: Indicates the type of LC (e.g., "Irrevocable").
   * `letter_status_id`: Indicates the initial status (e.g., "Open").
 
-### 3. **Seller Ships Goods**
+## 3. **Seller Ships Goods**
 
 * The seller ships the goods to the buyer and collects necessary documents (e.g., bill of lading, commercial invoice).
 * These documents are submitted to the seller’s bank (Advising Bank).
