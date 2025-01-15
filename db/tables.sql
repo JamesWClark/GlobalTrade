@@ -12,9 +12,9 @@ CREATE TABLE addresses (
 
 CREATE TABLE contacts (
     contact_id INT IDENTITY(1,1) PRIMARY KEY,
-    contact_person VARCHAR(255),
-    phone_number VARCHAR(20),
-    email VARCHAR(100)
+    contact_person VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(20) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL
 );
 
 CREATE TABLE institutions (
@@ -34,13 +34,17 @@ CREATE TABLE party_roles (
 CREATE TABLE parties (
     party_id INT IDENTITY(1,1) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    address_id INT,
-    contact_id INT,
-    role_id INT,
+    address_id INT NOT NULL,
+    contact_id INT NOT NULL,
+    role_id INT NOT NULL,
     FOREIGN KEY (address_id) REFERENCES addresses(address_id),
     FOREIGN KEY (contact_id) REFERENCES contacts(contact_id),
     FOREIGN KEY (role_id) REFERENCES party_roles(role_id)
 );
+
+CREATE INDEX idx_parties_address_id ON parties(address_id);
+CREATE INDEX idx_parties_contact_id ON parties(contact_id);
+CREATE INDEX idx_parties_role_id ON parties(role_id);
 
 CREATE TABLE letter_types (
     letter_type_id INT IDENTITY(1,1) PRIMARY KEY,
@@ -145,14 +149,15 @@ CREATE TABLE fedwire_messages (
 CREATE TABLE swift_xml_messages (
     swift_id INT IDENTITY(1,1) PRIMARY KEY,
     letter_id INT NOT NULL,
-    message_id VARCHAR(50),
-    creation_date DATETIME,
-    instructed_amount DECIMAL(15, 2),
-    currency VARCHAR(3),
-    creditor_id INT,
-    debtor_id INT,
-    end_to_end_id VARCHAR(50),
+    message_id VARCHAR(50) NOT NULL,
+    creation_date DATETIME DEFAULT GETDATE(),
+    instructed_amount DECIMAL(15, 2) NOT NULL,
+    currency VARCHAR(3) NOT NULL,
+    creditor_id INT NOT NULL,
+    debtor_id INT NOT NULL,
+    end_to_end_id VARCHAR(50) NOT NULL,
     FOREIGN KEY (letter_id) REFERENCES letters_of_credit(letter_id),
     FOREIGN KEY (creditor_id) REFERENCES parties(party_id),
     FOREIGN KEY (debtor_id) REFERENCES parties(party_id)
 );
+
