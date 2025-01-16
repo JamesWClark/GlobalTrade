@@ -115,8 +115,8 @@ SET IDENTITY_INSERT institutions OFF;
 SET IDENTITY_INSERT party_roles ON;
 
 INSERT INTO party_roles (role_id, role) VALUES
-(1, 'Buyer'),
-(2, 'Seller');
+(1, 'Applicant'),
+(2, 'Beneficiary');
 
 SET IDENTITY_INSERT party_roles OFF;
 
